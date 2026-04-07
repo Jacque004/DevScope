@@ -1,6 +1,9 @@
 {
   "name": "devscope",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "workspaces": [
     "apps/*"
   ],

@@ -6,7 +6,7 @@
     <title>DevScope</title>
     <meta
       name="description"
-      content="Analyse de depots GitHub — interface Next.js, API NestJS. L’application se lance en local."
+      content="DevScope — deploiement Vercel + Render (voir README), ou en local : npm run dev."
     />
     <style>
       :root {
@@ -94,16 +94,21 @@
       <p class="badge">DevScope</p>
       <h1>Site du dépôt GitHub</h1>
       <p>
-        Le code et les mises à jour du projet sont sur GitHub. Pour ouvrir l’application complète
-        (dashboard, API) dans le navigateur, déployez-la une fois (Vercel + Render) — le dépôt
-        reste la source : chaque push peut redéployer automatiquement.
+        Tout le code est sur ce dépôt GitHub. L’app complète (dashboard + API) se consulte dans le
+        navigateur après un déploiement ; les prochains <code>git push</code> peuvent redéployer
+        tout seuls si Vercel et Render sont reliés au repo.
       </p>
       <div class="card">
         <h2>Application en ligne</h2>
         <p style="margin-top: 0">
-          Suivez la section <strong>Déploiement en ligne</strong> du
-          <a href="https://github.com/Jacque004/DevScope/blob/main/README.md">README sur GitHub</a>
-          : API sur Render, interface sur Vercel, variable <code>INTERNAL_API_URL</code>.
+          Étapes détaillées : section <strong>Déploiement en ligne</strong> du
+          <a href="https://github.com/Jacque004/DevScope/blob/main/README.md">README</a>
+          (API Render, front Vercel, variable <code>INTERNAL_API_URL</code>).
+        </p>
+        <p style="margin-top: 0.75rem">
+          Chaque push sur <code>main</code> lance un
+          <a href="https://github.com/Jacque004/DevScope/actions">build de vérification (CI)</a>
+          sur GitHub.
         </p>
       </div>
       <div class="card">

@@ -59,6 +59,8 @@ L’app complète = **Next.js** (`apps/web`) + **API NestJS** (`apps/api`).
    - **`INTERNAL_API_URL`** = URL Render, ex. `https://devscope-api.onrender.com` (sans `/` final).
 4. Déployer : l’URL Vercel sert l’interface ; `/api/*` est proxifié vers l’API.
 
+**Redéploiement automatique** : une fois Render et Vercel connectés à ce dépôt GitHub, chaque `git push` sur `main` déclenche en général un nouveau build côté hébergeur (vérifiez l’option *Auto-Deploy* / branche `main`). Le workflow **[CI](.github/workflows/ci.yml)** sur GitHub vérifie en parallèle que `npm run build` réussit.
+
 ### Optionnel
 
 - **LLM** : variables dans [`.env.example`](.env.example) sur Render.
