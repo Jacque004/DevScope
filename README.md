@@ -35,3 +35,18 @@ Variables d’environnement : copier `.env.example` vers `.env` à la racine.
 ```bash
 npm run build
 ```
+
+## GitHub Pages (`*.github.io/...`) et erreur 404
+
+**Pourquoi `https://jacque004.github.io/DevScope/apps/web/` renvoie 404**
+
+1. **GitHub Pages ne reproduit pas l’arborescence du dépôt** (`apps/web`, etc.). Il sert uniquement les fichiers que vous publiez (souvent un dossier `out/` ou `docs/` avec un `index.html` à la racine du site).
+2. **Ce projet n’est pas un site statique seul** : le front Next.js s’appuie sur une **API NestJS** (réécritures `/api/*` → backend). Les Pages GitHub **n’exécutent pas Node.js** : pas de Next « serveur », pas d’API Nest sur Pages.
+
+**En pratique** : pour une URL publique, déployez plutôt :
+
+- **Vercel**, **Netlify** ou **Cloudflare Pages** pour `apps/web` (avec variables d’environnement pointant vers l’URL de l’API) ;
+- **Railway**, **Render**, **Fly.io**, etc. pour `apps/api` ;
+- ou un **VPS** / Docker avec les deux services.
+
+Tester l’application reste le plus simple en local : `npm run dev` puis [http://localhost:3000](http://localhost:3000).
