@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DevScope</title>
+    <meta
+      name="description"
+      content="Analyse de depots GitHub — interface Next.js, API NestJS. L’application se lance en local."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0a0a0f;
+        --card: #18181b;
+        --text: #e4e4e7;
+        --muted: #a1a1aa;
+        --cyan: #22d3ee;
+        --border: #27272a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height:1.6;
+      }
+      .wrap {
+        max-width: 40rem;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem 4rem;
+      }
+      .badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--cyan);
+      }
+      h1 {
+        margin: 0.5rem 0 0;
+        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      p {
+        color: var(--muted);
+        margin: 1rem 0 0;
+      }
+      .card {
+        margin-top: 2rem;
+        padding: 1.25rem 1.35rem;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: rgba(24, 24, 27, 0.6);
+      }
+      .card h2 {
+        margin: 0 0 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      pre {
+        margin: 0;
+        padding: 1rem;
+        overflow-x: auto;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        background: #09090b;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+      }
+      a {
+        color: var(--cyan);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      ul {
+        margin: 0.75rem 0 0;
+        padding-left: 1.25rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="badge">DevScope</p>
+      <h1>Page GitHub Pages</h1>
+      <p>
+        Ce site ne contient pas l’application Next.js : GitHub Pages sert uniquement des fichiers
+        statiques. L’interface complete (dashboard, comparaison) et l’API NestJS se lancent sur
+        votre machine ou sur un hebergeur (Vercel, Render, etc.).
+      </p>
+      <div class="card">
+        <h2>Lancer le projet en local</h2>
+        <pre><code>git clone https://github.com/Jacque004/DevScope.git
+cd DevScope
+npm install
+cp .env.example .env
+npm run dev</code></pre>
+        <p style="margin-top: 1rem">
+          Puis ouvrez <strong style="color: var(--text)">http://localhost:3000</strong>
+        </p>
+      </div>
+      <div class="card">
+        <h2>Depot</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/Jacque004/DevScope">github.com/Jacque004/DevScope</a>
+          </li>
+          <li>Code : dossiers <code>apps/web</code> et <code>apps/api</code></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

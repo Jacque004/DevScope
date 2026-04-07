@@ -38,12 +38,25 @@ npm run build
 
 ## GitHub Pages (`*.github.io/...`) et erreur 404
 
-**Pourquoi `https://jacque004.github.io/DevScope/apps/web/` renvoie 404**
+**Pourquoi vous voyiez une 404**
 
-1. **GitHub Pages ne reproduit pas l’arborescence du dépôt** (`apps/web`, etc.). Il sert uniquement les fichiers que vous publiez (souvent un dossier `out/` ou `docs/` avec un `index.html` à la racine du site).
-2. **Ce projet n’est pas un site statique seul** : le front Next.js s’appuie sur une **API NestJS** (réécritures `/api/*` → backend). Les Pages GitHub **n’exécutent pas Node.js** : pas de Next « serveur », pas d’API Nest sur Pages.
+GitHub Pages ne publie **rien** tant que vous n’avez pas choisi une source (dossier `docs/`, branche `gh-pages`, ou workflow). Sans `index.html` dans ce qui est publié, l’URL du site renvoie **404**.
 
-**En pratique** : pour une URL publique, déployez plutôt :
+**Ce dépôt inclut une page d’accueil statique** dans [`docs/index.html`](docs/index.html) (texte d’information + liens). Après `git pull`, configurez Pages :
+
+1. Sur GitHub : **Settings** → **Pages**
+2. **Build and deployment** → **Source** : *Deploy from a branch*
+3. **Branch** : `main`, dossier **`/docs`**, puis **Save**
+4. Attendez 1–2 minutes : le site sera à **`https://jacque004.github.io/DevScope/`** (pas sous `/apps/web/`).
+
+Cette page **n’est pas** l’application Next.js complète (voir ci-dessous).
+
+**Pourquoi `.../DevScope/apps/web/` renverra toujours 404 sur Pages**
+
+1. **GitHub Pages ne reproduit pas l’arborescence du dépôt** (`apps/web`, etc.). Il sert uniquement les fichiers publiés (ici le contenu de `docs/`).
+2. **L’app complète n’est pas un site statique** : le front Next.js s’appuie sur une **API NestJS**. Les Pages **n’exécutent pas Node.js**.
+
+**En pratique** : pour une URL publique avec l’app complète, déployez plutôt :
 
 - **Vercel**, **Netlify** ou **Cloudflare Pages** pour `apps/web` (avec variables d’environnement pointant vers l’URL de l’API) ;
 - **Railway**, **Render**, **Fly.io**, etc. pour `apps/api` ;
