@@ -22,9 +22,14 @@ async function bootstrap() {
     });
   });
 
+  // Production : laisser vide pour accepter l’Origin du navigateur (ex. *.vercel.app).
+  // Sinon liste d’URLs séparées par des virgules : https://app.vercel.app,http://localhost:3000
+  const corsOrigins = process.env.CORS_ORIGIN?.trim();
   app.enableCors({
-    origin: process.env.CORS_ORIGIN ?? "http://localhost:3000",
-    credentials: true,
+    origin: corsOrigins
+      ? corsOrigins.split(",").map((o) => o.trim())
+      : true,
+    credentials: false,
   });
   const port = process.env.PORT ?? 3001;
   await app.listen(port);

@@ -36,6 +36,30 @@ Variables d’environnement : copier `.env.example` vers `.env` à la racine.
 npm run build
 ```
 
+## Déploiement en ligne (sans cloner)
+
+L’app complète = **Next.js** (`apps/web`) + **API NestJS** (`apps/api`). GitHub Pages ne suffit pas. Ordre recommandé :
+
+### 1. API sur Render
+
+1. Compte [Render](https://render.com) → **New** → **Blueprint** (ou **Web Service**).
+2. Connecter le dépôt GitHub ; à la racine, utiliser le fichier [`render.yaml`](render.yaml) si proposé.
+3. Dans **Environment**, ajouter **`GITHUB_TOKEN`** (token lecture seule [GitHub](https://github.com/settings/tokens)) pour éviter les quotas trop bas.
+4. Après déploiement, copier l’URL publique, ex. `https://devscope-api.onrender.com` (test : `/api/health`).
+
+### 2. Front sur Vercel
+
+1. Compte [Vercel](https://vercel.com) → **Add New** → **Project** → importer le même dépôt.
+2. **Root Directory** : `apps/web` (important : le fichier [`apps/web/vercel.json`](apps/web/vercel.json) installe le monorepo depuis la racine).
+3. **Environment Variables** (Production + Preview) :
+   - **`INTERNAL_API_URL`** = URL de l’API Render, ex. `https://devscope-api.onrender.com` (sans `/` final).
+4. Déployer. L’URL Vercel (ex. `https://devscope.vercel.app`) sert l’interface ; les appels `/api/*` sont proxifiés vers l’API via cette variable.
+
+### 3. Optionnel
+
+- **LLM** : sur Render, reprendre les variables du fichier [`.env.example`](.env.example) (`LLM_ENABLED`, `OPENAI_*` ou Ollama si accessible).
+- **CORS** : par défaut l’API accepte n’importe quel `Origin` si `CORS_ORIGIN` est vide. Pour restreindre : `CORS_ORIGIN=https://votre-app.vercel.app` sur Render.
+
 ## GitHub Pages (`*.github.io/...`) et erreur 404
 
 **Pourquoi vous voyiez une 404**
